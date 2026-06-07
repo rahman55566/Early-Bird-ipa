@@ -38,3 +38,7 @@ workflows:
 
     artifacts:
       - build/ios/iphonesimulator/*.app
+      - build/ios/iphoneos/*.app
+      - build/*.app
+      - build/ios/Release-iphoneos/*.app
+      - *.ipa
