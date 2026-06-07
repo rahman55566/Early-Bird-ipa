@@ -12,33 +12,28 @@ workflows:
     scripts:
       - name: Create Clean iOS Project Architecture
         script: |
-          # 1. புதிய ஐபோன் ப்ராஜெக்ட்டிற்கான ஃபைல்களைத் தூய்மையாக உருவாக்குகிறது
           rm -rf ios
           flutter clean
           flutter create . --platforms=ios --org com.ziyahurrahman --project-name earlybird
 
       - name: Fetch iOS Packages
         script: |
-          # 2. ஆப்பிற்குத் தேவையான அனைத்து பிளகின்களையும் லோட் செய்கிறது
           flutter packages pub get
 
       - name: Configure CocoaPods for iOS
         script: |
-          # 3. ஐபோன் பில்டுக்குத் தேவையான போட் (Pod) கோப்புகளை இன்ஸ்டால் செய்கிறது
           cd ios
           pod install
           cd ..
 
       - name: Customize App Name to Early Bird
         script: |
-          # 4. ஆப் பெயரைக் கச்சிதமாக 'Early Bird' என்று மாற்றுகிறது
           if [ -f ios/Runner/Info.plist ]; then
             sed -i '' 's/<string>earlybird<\/string>/<string>Early Bird<\/string>/g' ios/Runner/Info.plist
           fi
 
       - name: Build iOS App Structure
         script: |
-          # 5. இலவச ஆப்பிள் ஐடி என்பதால் கோட்-சைனிங் இல்லாமல் பில்டு செய்கிறோம் தம்பி
           flutter build ios --debug --no-codesign
 
     artifacts:
