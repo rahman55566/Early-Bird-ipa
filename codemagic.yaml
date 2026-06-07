@@ -34,11 +34,9 @@ workflows:
 
       - name: Build iOS App Structure
         script: |
-          flutter build ios --debug --no-codesign
+          flutter build ios --release --no-codesign
 
     artifacts:
-      - build/ios/iphonesimulator/*.app
+      - build/ios/iphoneos/Release-iphoneos/*.app
       - build/ios/iphoneos/*.app
       - build/*.app
-      - build/ios/Release-iphoneos/*.app
-      - "*.ipa"
